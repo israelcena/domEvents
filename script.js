@@ -13,9 +13,6 @@ ul.addEventListener('click', (event) => {
 })
 // elements
 const popup = document.querySelector('#popup');
-const li = document.createElement('li');
-li.classList.add('list-group-item')
-li.classList.add('list-group-item-primary')
 
 // buttons
 const btn = document.querySelector('button.btn');
@@ -23,8 +20,8 @@ const closeBtn = document.querySelector('#close-popup');
 const sendBtn = document.querySelector('#send-btn');
 
 // events
-closeBtn.addEventListener('click', () => { 
-  popup.classList.add('d-none') 
+closeBtn.addEventListener('click', () => {
+  popup.classList.add('d-none')
 });
 
 closeBtn.addEventListener('mouseover', (event) => event.target.style.cursor = 'pointer')
@@ -34,10 +31,20 @@ btn.addEventListener('click', () => {
 });
 
 sendBtn.addEventListener('click', (event) => {
-  console.log(event.target)
-  li.innerHTML = '<input class="form-check-input me-1" type="checkbox" value="" id="SecondCheckbox"> '
-  li.innerHTML += '<label class="form-check-label" for="SecondCheckbox">First checkbox</label>' 
-  ul.append(li);
-  popup.classList.add('d-none')
+  const inputContent = event.target.previousElementSibling
+  
+  const li = document.createElement('li');
+  li.classList.add('list-group-item')
+  li.classList.add('list-group-item-primary')
+  if (inputContent.value && inputContent.value.length > 3) {
+    li.innerHTML = `<input class="form-check-input me-1" type="checkbox" id="el${ul.children.length}">`
+    li.innerHTML += `<label class="form-check-label" for="el${ul.children.length}">${inputContent.value}</label>`
+    ul.append(li);
+    inputContent.value = '';
+    popup.classList.add('d-none');
+  } else {
+    alert('Digite um conteúdo com mais de 3 caracteres para prosseguir')
+  }
+
 })
 
