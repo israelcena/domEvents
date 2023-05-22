@@ -32,7 +32,7 @@ btn.addEventListener('click', () => {
 
 sendBtn.addEventListener('click', (event) => {
   const inputContent = event.target.previousElementSibling
-  
+
   const li = document.createElement('li');
   li.classList.add('list-group-item')
   li.classList.add('list-group-item-primary')
@@ -47,4 +47,3 @@ sendBtn.addEventListener('click', (event) => {
   }
 
 })
-
